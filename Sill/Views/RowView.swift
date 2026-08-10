@@ -66,6 +66,7 @@ private struct Checkmark: Shape {
 struct RowView: View {
     var todo: Todo
     var isHovered: Bool
+    var isFocused: Bool
     var bloom: Double
     var isEditing: Bool
     var isPickingDate: Bool
@@ -84,7 +85,9 @@ struct RowView: View {
     private var controlState: ControlView.State {
         if todo.isCompleted { return .completed }
         if todo.isOverdue { return .overdue }
-        return isHovered ? .hover : .idle
+        // Focus is strictly stronger than hover: the keyboard state must never read as
+        // weaker than the pointer state.
+        return (isHovered || isFocused) ? .hover : .idle
     }
 
     private var titleColor: Color {
@@ -99,6 +102,14 @@ struct RowView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: Tokens.Space.s12) {
+                // Focus lives out in the panel's padding gutter, so it never shifts content
+                // and it is the only accent on the screen while it is showing.
+                Capsule()
+                    .fill(Tokens.accent)
+                    .frame(width: 2, height: 22)
+                    .opacity(isFocused ? 1 : 0)
+                    .offset(x: -Tokens.Space.s16)
+                    .frame(width: 0)
                 // Optical lift: cap height sits above the line box centre, so mathematical
                 // centring makes the control look low.
                 ControlView(state: controlState, bloom: bloom)

@@ -6,10 +6,10 @@ import SwiftUI
 /// panel arrives as an object rather than as a container that filled up on the way down.
 struct PanelContentView: View {
     var store: TodoStore
+    @Bindable var state: PanelState
     var progress: Double
     var isExpanded: Bool
     @State private var hoveredID: UUID?
-    @State private var editingID: UUID?
     @State private var datePickingID: UUID?
     @State private var bloomID: UUID?
     @State private var bloom: Double = 0
@@ -59,7 +59,20 @@ struct PanelContentView: View {
         }
         .onChange(of: isExpanded) { _, open in
             // The field is focused the instant the panel settles. There is nothing to click.
+            state.captureFocused = open
             captureFocused = open
+        }
+        .onChange(of: state.captureFocused) { _, want in captureFocused = want }
+        .onChange(of: captureFocused) { _, has in
+            // Clicking into the field takes focus back off any row.
+            if has { state.focusedRowID = nil }
+        }
+        .onChange(of: state.snoozeRequestID) { _, id in
+            guard let id, let todo = store.visible.first(where: { $0.id == id }) else { return }
+            snooze(todo, until: RowView.tomorrow9am())
+            state.snoozeRequestID = nil
+            state.focusedRowID = nil
+            state.captureFocused = true
         }
         .onAppear { captureFocused = isExpanded }
     }
@@ -138,20 +151,21 @@ struct PanelContentView: View {
             ForEach(store.visible) { todo in
                 RowView(todo: todo,
                         isHovered: hoveredID == todo.id,
+                        isFocused: state.focusedRowID == todo.id,
                         bloom: bloomID == todo.id ? bloom : 0,
-                        isEditing: editingID == todo.id,
+                        isEditing: state.editingRowID == todo.id,
                         isPickingDate: datePickingID == todo.id,
                         onToggle: { complete(todo) },
-                        onBeginEdit: { editingID = todo.id; datePickingID = nil },
+                        onBeginEdit: { state.editingRowID = todo.id; datePickingID = nil },
                         onCommitEdit: { new in
                             let t = new.trimmingCharacters(in: .whitespacesAndNewlines)
                             if !t.isEmpty { store.updateTitle(todo.id, to: t) }
-                            editingID = nil
+                            state.editingRowID = nil
                         },
-                        onCancelEdit: { editingID = nil },
+                        onCancelEdit: { state.editingRowID = nil },
                         onTapDate: {
                             datePickingID = datePickingID == todo.id ? nil : todo.id
-                            editingID = nil
+                            state.editingRowID = nil
                         },
                         onPickDate: { d in
                             store.setDue(todo.id, to: d)

@@ -45,7 +45,7 @@ struct PanelRootView: View {
 
                     SpecularOverlay(geometry: state.geometry, insetX: insetX, progress: p)
 
-                    PanelContentView(store: store, progress: p, isExpanded: state.isExpanded)
+                    PanelContentView(store: store, state: state, progress: p, isExpanded: state.isExpanded)
                         .frame(width: Tokens.Geo.panelWidth)
                         .offset(x: insetX, y: state.geometry.hostHeight)
                         .allowsHitTesting(p > 0.9)

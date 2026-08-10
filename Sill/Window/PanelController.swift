@@ -32,6 +32,15 @@ final class PanelState {
     /// reported upward rather than acted on here.
     var onToggle: (() -> Void)?
 
+    /// Keyboard focus. Held here rather than in the view because the key monitor lives in
+    /// AppKit and both have to agree on which row is focused.
+    var focusedRowID: UUID?
+    var editingRowID: UUID?
+    /// Set when focus moves to a row, so the capture field stops swallowing keystrokes.
+    var captureFocused = true
+    /// Raised when a row asks to be snoozed from the keyboard.
+    var snoozeRequestID: UUID?
+
     /// Progress at a given instant. Pure function of the clock, which is what lets the Canvas
     /// redraw every frame instead of once per withAnimation call.
     func progress(at date: Date, reduceMotion: Bool) -> Double {
@@ -171,11 +180,11 @@ final class PanelController {
         // closes the panel rather than clearing the field.
         keyMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
             guard let self else { return event }
-            if event.keyCode == 53 {   // Escape
-                if self.state.isExpanded { self.toggle() }
-                return nil
-            }
-            return event
+            // NSEvent is not Sendable under strict concurrency, so only the key code crosses
+            // the boundary. The monitor already runs on the main thread.
+            let code = event.keyCode
+            let handled = MainActor.assumeIsolated { self.handleKey(code) }
+            return handled ? nil : event
         }
     }
 
@@ -217,6 +226,64 @@ final class PanelController {
         }
     }
 
+    /// Row keys are only intercepted when a row actually has focus, so typing an "s" into
+    /// the capture field types an "s" rather than snoozing something.
+    private func handleKey(_ keyCode: UInt16) -> Bool {
+        guard state.isExpanded else { return false }
+        let rows = store.visible
+
+        // Escape always wins. While editing it cancels the edit; the first Escape must never
+        // destroy anything, so only the second one retracts the panel.
+        if keyCode == 53 {
+            if state.editingRowID != nil { state.editingRowID = nil; return true }
+            if state.focusedRowID != nil { state.focusedRowID = nil; state.captureFocused = true; return true }
+            toggle()
+            return true
+        }
+
+        // Editing a title: everything else belongs to the text field.
+        if state.editingRowID != nil { return false }
+
+        func focusIndex() -> Int? { rows.firstIndex { $0.id == state.focusedRowID } }
+
+        switch keyCode {
+        case 125:  // Down
+            guard !rows.isEmpty else { return true }
+            let next = focusIndex().map { min($0 + 1, rows.count - 1) } ?? 0
+            state.focusedRowID = rows[next].id
+            state.captureFocused = false
+            return true
+        case 126:  // Up
+            guard let i = focusIndex() else { return false }
+            if i == 0 {
+                state.focusedRowID = nil
+                state.captureFocused = true
+            } else {
+                state.focusedRowID = rows[i - 1].id
+            }
+            return true
+        default:
+            break
+        }
+
+        guard let id = state.focusedRowID else { return false }
+        switch keyCode {
+        case 36:  // Return opens the title in place
+            state.editingRowID = id
+            return true
+        case 49:  // Space completes
+            store.complete(id)
+            state.focusedRowID = nil
+            state.captureFocused = true
+            return true
+        case 1:   // S snoozes
+            state.snoozeRequestID = id
+            return true
+        default:
+            return false
+        }
+    }
+
     func toggle(reduceMotion: Bool = false) {
         state.isExpanded.toggle()
         probe.begin()
@@ -228,6 +295,9 @@ final class PanelController {
             panel?.makeKeyAndOrderFront(nil)
             state.beginOpen()
         } else {
+            state.focusedRowID = nil
+            state.editingRowID = nil
+            state.captureFocused = true
             state.beginClose(from: state.progress(at: Date(), reduceMotion: reduceMotion))
             panel?.resignKey()
             NSApp.hide(nil)
