@@ -1,0 +1,309 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1EF9F5BCEA137DD93D87298F /* SillApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB15A17D938A71F7F8B5012E /* SillApp.swift */; };
+		123D0DE312D325FF3D235C56 /* Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627F7928A4C694F3C8746C66 /* Verification.swift */; };
+		3A62253AED8C4847F86B8494 /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDA8EB1ECD9FFCB7D2899B1 /* DesignTokens.swift */; };
+		7DBF95E726F2C4242EE4D8BD /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8513A42D6BFA8E4E35B5AC /* Motion.swift */; };
+		4112B3B161316C7A09087A04 /* Morph.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA417CE64E7F6B4882AC4E0 /* Morph.swift */; };
+		7459C10528DC25ED585A43C5 /* Silhouette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F47280F550592EA2DBC725B /* Silhouette.swift */; };
+		12F4B276D6CEC849DF58ED8D /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB292631B8838464489629A /* DateParser.swift */; };
+		D8BAAFE2A0756A6AFB3C5018 /* TodoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4229F78396F99EFA3CA738 /* TodoStore.swift */; };
+		B60BE15241CD9B0D97F4A32A /* PanelContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093B0BC13475AA6DBF18F745 /* PanelContentView.swift */; };
+		84CE780D8691B8EB443F5926 /* PanelRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0AE980191B78281999DAF8 /* PanelRootView.swift */; };
+		1C0FB4C2AC31A4069FF4C3D7 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089CB922812F79FC31EA100C /* RowView.swift */; };
+		A3AE22B17053CB6ECE698CBE /* WeekStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733599F4D6D0DBF85E336F91 /* WeekStrip.swift */; };
+		BE082B6B3ADB724A10927FDB /* HitMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4A8C443B6EC42468754F9 /* HitMaskView.swift */; };
+		1CE661FC10F320F373CC1FD8 /* NotchPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88E00C6FA8FCC38834B2185 /* NotchPanel.swift */; };
+		637D541095A3AEB2BD0CFED0 /* PanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1624B239F0CB89B713FB426 /* PanelController.swift */; };
+		A02765FE297CBB58723EF201 /* ScreenGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A81B18D1A7C39230ECC9FB /* ScreenGeometry.swift */; };
+		6F16A64AD94B4E1F36F694A7 /* DMMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 428443C4CDE71BC4CFAA9206 /* DMMono-Regular.ttf */; };
+		3E8CF345D35E5357A135ACEA /* Fraunces.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F6F49021474E739B3DBAF3D /* Fraunces.ttf */; };
+		D1288D24D5A94F3B4A880E02 /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED0CDA143DDCB546E5E6EDBB /* IBMPlexSans.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F5BF48AA40CAD7891EB709FC /* Sill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sill.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB15A17D938A71F7F8B5012E /* SillApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SillApp.swift; path = Sill/App/SillApp.swift; sourceTree = SOURCE_ROOT; };
+		627F7928A4C694F3C8746C66 /* Verification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Verification.swift; path = Sill/App/Verification.swift; sourceTree = SOURCE_ROOT; };
+		8DDA8EB1ECD9FFCB7D2899B1 /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DesignTokens.swift; path = Sill/Design/DesignTokens.swift; sourceTree = SOURCE_ROOT; };
+		AE8513A42D6BFA8E4E35B5AC /* Motion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Motion.swift; path = Sill/Design/Motion.swift; sourceTree = SOURCE_ROOT; };
+		ABA417CE64E7F6B4882AC4E0 /* Morph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Morph.swift; path = Sill/Render/Morph.swift; sourceTree = SOURCE_ROOT; };
+		6F47280F550592EA2DBC725B /* Silhouette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Silhouette.swift; path = Sill/Render/Silhouette.swift; sourceTree = SOURCE_ROOT; };
+		1AB292631B8838464489629A /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateParser.swift; path = Sill/Store/DateParser.swift; sourceTree = SOURCE_ROOT; };
+		BC4229F78396F99EFA3CA738 /* TodoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodoStore.swift; path = Sill/Store/TodoStore.swift; sourceTree = SOURCE_ROOT; };
+		093B0BC13475AA6DBF18F745 /* PanelContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PanelContentView.swift; path = Sill/Views/PanelContentView.swift; sourceTree = SOURCE_ROOT; };
+		DA0AE980191B78281999DAF8 /* PanelRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PanelRootView.swift; path = Sill/Views/PanelRootView.swift; sourceTree = SOURCE_ROOT; };
+		089CB922812F79FC31EA100C /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RowView.swift; path = Sill/Views/RowView.swift; sourceTree = SOURCE_ROOT; };
+		733599F4D6D0DBF85E336F91 /* WeekStrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeekStrip.swift; path = Sill/Views/WeekStrip.swift; sourceTree = SOURCE_ROOT; };
+		05F4A8C443B6EC42468754F9 /* HitMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HitMaskView.swift; path = Sill/Window/HitMaskView.swift; sourceTree = SOURCE_ROOT; };
+		F88E00C6FA8FCC38834B2185 /* NotchPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotchPanel.swift; path = Sill/Window/NotchPanel.swift; sourceTree = SOURCE_ROOT; };
+		F1624B239F0CB89B713FB426 /* PanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PanelController.swift; path = Sill/Window/PanelController.swift; sourceTree = SOURCE_ROOT; };
+		02A81B18D1A7C39230ECC9FB /* ScreenGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScreenGeometry.swift; path = Sill/Window/ScreenGeometry.swift; sourceTree = SOURCE_ROOT; };
+		428443C4CDE71BC4CFAA9206 /* DMMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = DMMono-Regular.ttf; path = Sill/Resources/DMMono-Regular.ttf; sourceTree = SOURCE_ROOT; };
+		9F6F49021474E739B3DBAF3D /* Fraunces.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = Fraunces.ttf; path = Sill/Resources/Fraunces.ttf; sourceTree = SOURCE_ROOT; };
+		ED0CDA143DDCB546E5E6EDBB /* IBMPlexSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = IBMPlexSans.ttf; path = Sill/Resources/IBMPlexSans.ttf; sourceTree = SOURCE_ROOT; };
+		599973E3DB38D6E9DA10CA96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sill/Info.plist; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		059DB2086B49B680F85B3555 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B731CEFC6751AAE0EC69B98 = {
+			isa = PBXGroup;
+			children = (
+				D8DBA3F9900DD17689CA0C4D /* Sill */,
+				0A2C978E52A76F0AA9F68BB5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D8DBA3F9900DD17689CA0C4D /* Sill */ = {
+			isa = PBXGroup;
+			children = (
+				FB15A17D938A71F7F8B5012E /* SillApp.swift */,
+				627F7928A4C694F3C8746C66 /* Verification.swift */,
+				8DDA8EB1ECD9FFCB7D2899B1 /* DesignTokens.swift */,
+				AE8513A42D6BFA8E4E35B5AC /* Motion.swift */,
+				ABA417CE64E7F6B4882AC4E0 /* Morph.swift */,
+				6F47280F550592EA2DBC725B /* Silhouette.swift */,
+				1AB292631B8838464489629A /* DateParser.swift */,
+				BC4229F78396F99EFA3CA738 /* TodoStore.swift */,
+				093B0BC13475AA6DBF18F745 /* PanelContentView.swift */,
+				DA0AE980191B78281999DAF8 /* PanelRootView.swift */,
+				089CB922812F79FC31EA100C /* RowView.swift */,
+				733599F4D6D0DBF85E336F91 /* WeekStrip.swift */,
+				05F4A8C443B6EC42468754F9 /* HitMaskView.swift */,
+				F88E00C6FA8FCC38834B2185 /* NotchPanel.swift */,
+				F1624B239F0CB89B713FB426 /* PanelController.swift */,
+				02A81B18D1A7C39230ECC9FB /* ScreenGeometry.swift */,
+				428443C4CDE71BC4CFAA9206 /* DMMono-Regular.ttf */,
+				9F6F49021474E739B3DBAF3D /* Fraunces.ttf */,
+				ED0CDA143DDCB546E5E6EDBB /* IBMPlexSans.ttf */,
+				599973E3DB38D6E9DA10CA96 /* Info.plist */,
+			);
+			name = Sill;
+			sourceTree = "<group>";
+		};
+		0A2C978E52A76F0AA9F68BB5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5BF48AA40CAD7891EB709FC /* Sill.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		42AEFBAE01D2DFD981F7DA7D /* Sill */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A153A96C3699897E682490A;
+			buildPhases = (
+				FCA229C23F166EBB0BA5029E /* Sources */,
+				059DB2086B49B680F85B3555 /* Frameworks */,
+				B9C6EB6F79FC54535ACB3053 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sill;
+			productName = Sill;
+			productReference = F5BF48AA40CAD7891EB709FC /* Sill.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46F86FAA6BBF9AC94A7E4595 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					42AEFBAE01D2DFD981F7DA7D = {
+						CreatedOnToolsVersion = 16.4;
+					};
+				};
+			};
+			buildConfigurationList = 01076EBF22530E406F54B419;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2B731CEFC6751AAE0EC69B98;
+			productRefGroup = 0A2C978E52A76F0AA9F68BB5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				42AEFBAE01D2DFD981F7DA7D /* Sill */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B9C6EB6F79FC54535ACB3053 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F16A64AD94B4E1F36F694A7 /* DMMono-Regular.ttf in Resources */,
+				3E8CF345D35E5357A135ACEA /* Fraunces.ttf in Resources */,
+				D1288D24D5A94F3B4A880E02 /* IBMPlexSans.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FCA229C23F166EBB0BA5029E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EF9F5BCEA137DD93D87298F /* SillApp.swift in Sources */,
+				123D0DE312D325FF3D235C56 /* Verification.swift in Sources */,
+				3A62253AED8C4847F86B8494 /* DesignTokens.swift in Sources */,
+				7DBF95E726F2C4242EE4D8BD /* Motion.swift in Sources */,
+				4112B3B161316C7A09087A04 /* Morph.swift in Sources */,
+				7459C10528DC25ED585A43C5 /* Silhouette.swift in Sources */,
+				12F4B276D6CEC849DF58ED8D /* DateParser.swift in Sources */,
+				D8BAAFE2A0756A6AFB3C5018 /* TodoStore.swift in Sources */,
+				B60BE15241CD9B0D97F4A32A /* PanelContentView.swift in Sources */,
+				84CE780D8691B8EB443F5926 /* PanelRootView.swift in Sources */,
+				1C0FB4C2AC31A4069FF4C3D7 /* RowView.swift in Sources */,
+				A3AE22B17053CB6ECE698CBE /* WeekStrip.swift in Sources */,
+				BE082B6B3ADB724A10927FDB /* HitMaskView.swift in Sources */,
+				1CE661FC10F320F373CC1FD8 /* NotchPanel.swift in Sources */,
+				637D541095A3AEB2BD0CFED0 /* PanelController.swift in Sources */,
+				A02765FE297CBB58723EF201 /* ScreenGeometry.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6F0B85FC643AF9C218F627EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1B05A9D10F61E514E88AF240 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		D87348BDE86A31AE1A1C3907 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Sill/Info.plist;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.meniscus.sill;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+			};
+			name = Debug;
+		};
+		024EEA213129F6CB818D8A64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Sill/Info.plist;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.meniscus.sill;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		01076EBF22530E406F54B419 /* Build configuration list for PBXProject */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F0B85FC643AF9C218F627EA /* Debug */,
+				1B05A9D10F61E514E88AF240 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A153A96C3699897E682490A /* Build configuration list for PBXNativeTarget */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D87348BDE86A31AE1A1C3907 /* Debug */,
+				024EEA213129F6CB818D8A64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+}
