@@ -1,0 +1,8 @@
+.DS_Store
+build/
+DerivedData/
+*.xcuserdatad/
+xcuserdata/
+*.xcworkspace/xcuserdata/
+design-reference/build/
+.claude/settings.local.json
