@@ -11,6 +11,7 @@
 		123D0DE312D325FF3D235C56 /* Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627F7928A4C694F3C8746C66 /* Verification.swift */; };
 		3A62253AED8C4847F86B8494 /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDA8EB1ECD9FFCB7D2899B1 /* DesignTokens.swift */; };
 		7DBF95E726F2C4242EE4D8BD /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8513A42D6BFA8E4E35B5AC /* Motion.swift */; };
+		0C5AB002FBF0F7D42E39E3BE /* IntelligenceBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523212C3212CC18DD6696702 /* IntelligenceBridge.swift */; };
 		4112B3B161316C7A09087A04 /* Morph.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA417CE64E7F6B4882AC4E0 /* Morph.swift */; };
 		7459C10528DC25ED585A43C5 /* Silhouette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F47280F550592EA2DBC725B /* Silhouette.swift */; };
 		12F4B276D6CEC849DF58ED8D /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB292631B8838464489629A /* DateParser.swift */; };
@@ -18,6 +19,7 @@
 		B60BE15241CD9B0D97F4A32A /* PanelContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093B0BC13475AA6DBF18F745 /* PanelContentView.swift */; };
 		84CE780D8691B8EB443F5926 /* PanelRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0AE980191B78281999DAF8 /* PanelRootView.swift */; };
 		1C0FB4C2AC31A4069FF4C3D7 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089CB922812F79FC31EA100C /* RowView.swift */; };
+		EACF4C453338D2BD9AF98692 /* Waterline.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE52988CAB03299ED7C32181 /* Waterline.swift */; };
 		A3AE22B17053CB6ECE698CBE /* WeekStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733599F4D6D0DBF85E336F91 /* WeekStrip.swift */; };
 		BE082B6B3ADB724A10927FDB /* HitMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4A8C443B6EC42468754F9 /* HitMaskView.swift */; };
 		1CE661FC10F320F373CC1FD8 /* NotchPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88E00C6FA8FCC38834B2185 /* NotchPanel.swift */; };
@@ -34,6 +36,7 @@
 		627F7928A4C694F3C8746C66 /* Verification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Verification.swift; path = Sill/App/Verification.swift; sourceTree = SOURCE_ROOT; };
 		8DDA8EB1ECD9FFCB7D2899B1 /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DesignTokens.swift; path = Sill/Design/DesignTokens.swift; sourceTree = SOURCE_ROOT; };
 		AE8513A42D6BFA8E4E35B5AC /* Motion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Motion.swift; path = Sill/Design/Motion.swift; sourceTree = SOURCE_ROOT; };
+		523212C3212CC18DD6696702 /* IntelligenceBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntelligenceBridge.swift; path = Sill/Intelligence/IntelligenceBridge.swift; sourceTree = SOURCE_ROOT; };
 		ABA417CE64E7F6B4882AC4E0 /* Morph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Morph.swift; path = Sill/Render/Morph.swift; sourceTree = SOURCE_ROOT; };
 		6F47280F550592EA2DBC725B /* Silhouette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Silhouette.swift; path = Sill/Render/Silhouette.swift; sourceTree = SOURCE_ROOT; };
 		1AB292631B8838464489629A /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateParser.swift; path = Sill/Store/DateParser.swift; sourceTree = SOURCE_ROOT; };
@@ -41,6 +44,7 @@
 		093B0BC13475AA6DBF18F745 /* PanelContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PanelContentView.swift; path = Sill/Views/PanelContentView.swift; sourceTree = SOURCE_ROOT; };
 		DA0AE980191B78281999DAF8 /* PanelRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PanelRootView.swift; path = Sill/Views/PanelRootView.swift; sourceTree = SOURCE_ROOT; };
 		089CB922812F79FC31EA100C /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RowView.swift; path = Sill/Views/RowView.swift; sourceTree = SOURCE_ROOT; };
+		EE52988CAB03299ED7C32181 /* Waterline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Waterline.swift; path = Sill/Views/Waterline.swift; sourceTree = SOURCE_ROOT; };
 		733599F4D6D0DBF85E336F91 /* WeekStrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeekStrip.swift; path = Sill/Views/WeekStrip.swift; sourceTree = SOURCE_ROOT; };
 		05F4A8C443B6EC42468754F9 /* HitMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HitMaskView.swift; path = Sill/Window/HitMaskView.swift; sourceTree = SOURCE_ROOT; };
 		F88E00C6FA8FCC38834B2185 /* NotchPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotchPanel.swift; path = Sill/Window/NotchPanel.swift; sourceTree = SOURCE_ROOT; };
@@ -78,6 +82,7 @@
 				627F7928A4C694F3C8746C66 /* Verification.swift */,
 				8DDA8EB1ECD9FFCB7D2899B1 /* DesignTokens.swift */,
 				AE8513A42D6BFA8E4E35B5AC /* Motion.swift */,
+				523212C3212CC18DD6696702 /* IntelligenceBridge.swift */,
 				ABA417CE64E7F6B4882AC4E0 /* Morph.swift */,
 				6F47280F550592EA2DBC725B /* Silhouette.swift */,
 				1AB292631B8838464489629A /* DateParser.swift */,
@@ -85,6 +90,7 @@
 				093B0BC13475AA6DBF18F745 /* PanelContentView.swift */,
 				DA0AE980191B78281999DAF8 /* PanelRootView.swift */,
 				089CB922812F79FC31EA100C /* RowView.swift */,
+				EE52988CAB03299ED7C32181 /* Waterline.swift */,
 				733599F4D6D0DBF85E336F91 /* WeekStrip.swift */,
 				05F4A8C443B6EC42468754F9 /* HitMaskView.swift */,
 				F88E00C6FA8FCC38834B2185 /* NotchPanel.swift */,
@@ -181,6 +187,7 @@
 				123D0DE312D325FF3D235C56 /* Verification.swift in Sources */,
 				3A62253AED8C4847F86B8494 /* DesignTokens.swift in Sources */,
 				7DBF95E726F2C4242EE4D8BD /* Motion.swift in Sources */,
+				0C5AB002FBF0F7D42E39E3BE /* IntelligenceBridge.swift in Sources */,
 				4112B3B161316C7A09087A04 /* Morph.swift in Sources */,
 				7459C10528DC25ED585A43C5 /* Silhouette.swift in Sources */,
 				12F4B276D6CEC849DF58ED8D /* DateParser.swift in Sources */,
@@ -188,6 +195,7 @@
 				B60BE15241CD9B0D97F4A32A /* PanelContentView.swift in Sources */,
 				84CE780D8691B8EB443F5926 /* PanelRootView.swift in Sources */,
 				1C0FB4C2AC31A4069FF4C3D7 /* RowView.swift in Sources */,
+				EACF4C453338D2BD9AF98692 /* Waterline.swift in Sources */,
 				A3AE22B17053CB6ECE698CBE /* WeekStrip.swift in Sources */,
 				BE082B6B3ADB724A10927FDB /* HitMaskView.swift in Sources */,
 				1CE661FC10F320F373CC1FD8 /* NotchPanel.swift in Sources */,

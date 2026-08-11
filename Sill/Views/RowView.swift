@@ -78,6 +78,7 @@ struct RowView: View {
     var onPickDate: (Date) -> Void
     var onSnooze: (Date) -> Void
     var onDelete: () -> Void
+    var onConfirmDue: () -> Void
 
     @State private var draft: String = ""
     @FocusState private var editing: Bool
@@ -140,11 +141,26 @@ struct RowView: View {
                         .onTapGesture(perform: onBeginEdit)
                 }
 
-                Text(todo.due.map(Self.stamp) ?? (isHovered ? "add date" : ""))
-                    .font(Tokens.mono(Tokens.TypeSize.monoStamp))
-                    .foregroundStyle(todo.due == nil ? Tokens.textTertiary : dueColor)
-                    .contentShape(Rectangle())
-                    .onTapGesture(perform: onTapDate)
+                if let tag = todo.tag {
+                    Text("#" + tag)
+                        .font(Tokens.mono(Tokens.TypeSize.monoStamp))
+                        .foregroundStyle(Tokens.textTertiary)
+                }
+
+                // Unconfirmed carries a cold underline until you accept or touch it. One
+                // click confirms, and your correction is final.
+                VStack(spacing: 2) {
+                    Text(todo.due.map(Self.stamp) ?? (isHovered ? "add date" : ""))
+                        .font(Tokens.mono(Tokens.TypeSize.monoStamp))
+                        .foregroundStyle(todo.due == nil ? Tokens.textTertiary : dueColor)
+                    if todo.dueUnconfirmed {
+                        Rectangle()
+                            .fill(Tokens.attention.opacity(0.65))
+                            .frame(height: 1)
+                    }
+                }
+                .contentShape(Rectangle())
+                .onTapGesture { todo.dueUnconfirmed ? onConfirmDue() : onTapDate() }
             }
             .frame(height: Tokens.Geo.rowHeight)
 

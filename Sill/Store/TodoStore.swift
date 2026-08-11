@@ -8,6 +8,11 @@ struct Todo: Identifiable, Codable, Equatable, Sendable {
     var completedAt: Date?
     var snoozedUntil: Date?
     var createdAt: Date = Date()
+    /// A single lowercase word from the model, shown as a chip.
+    var tag: String?
+    /// True while the model's guess is unconfirmed. It looks different until you accept or
+    /// touch it, because silent guessing is how people stop trusting the feature.
+    var dueUnconfirmed: Bool = false
 
     var isCompleted: Bool { completedAt != nil }
     var isOverdue: Bool {
@@ -117,12 +122,34 @@ final class TodoStore {
     func setDue(_ id: UUID, to date: Date?) {
         guard let i = todos.firstIndex(where: { $0.id == id }) else { return }
         todos[i].due = date
+        todos[i].dueUnconfirmed = false
         scheduleSave()
     }
 
     func snooze(_ id: UUID, until date: Date) {
         guard let i = todos.firstIndex(where: { $0.id == id }) else { return }
         todos[i].snoozedUntil = date
+        scheduleSave()
+    }
+
+    /// Applies what the model returned to a todo that already exists. Never creates one,
+    /// never blocks capture, and never overwrites a value the user has since edited.
+    func applyEnrichment(_ e: Enrichment, to id: UUID) {
+        guard let i = todos.firstIndex(where: { $0.id == id }) else { return }
+        if let t = e.title, !t.isEmpty { todos[i].title = t }
+        if todos[i].due == nil, let d = e.due {
+            todos[i].due = d
+            todos[i].dueUnconfirmed = e.dueInferred
+        }
+        if let tag = e.tag { todos[i].tag = tag }
+        scheduleSave()
+    }
+
+    /// One click confirms the guess. The user's correction is final and the model does not
+    /// get to revise it.
+    func confirmDue(_ id: UUID) {
+        guard let i = todos.firstIndex(where: { $0.id == id }) else { return }
+        todos[i].dueUnconfirmed = false
         scheduleSave()
     }
 

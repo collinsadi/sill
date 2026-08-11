@@ -7,6 +7,7 @@ import SwiftUI
 struct PanelContentView: View {
     var store: TodoStore
     @Bindable var state: PanelState
+    var intelligence: IntelligenceBridge
     var progress: Double
     var isExpanded: Bool
     @State private var hoveredID: UUID?
@@ -31,7 +32,9 @@ struct PanelContentView: View {
                 list
             }
             Spacer(minLength: 0)
-            if let note = snoozeNote {
+            if let ai = state.aiMessage {
+                footer(ai)
+            } else if let note = snoozeNote {
                 footer(note)
             } else if let done = store.lastCompleted {
                 footer("Completed \u{201C}\(done.title)\u{201D}.", undo: store.undoLastCompletion)
@@ -55,7 +58,7 @@ struct PanelContentView: View {
                 .tint(Tokens.accent)
                 .focused($captureFocused)
                 .onSubmit(commit)
-            Rectangle().fill(Tokens.hairline).frame(height: 1)
+            Waterline(phase: state.aiPhase)
         }
         .onChange(of: isExpanded) { _, open in
             // The field is focused the instant the panel settles. There is nothing to click.
@@ -108,9 +111,30 @@ struct PanelContentView: View {
     private func commit() {
         let raw = draft.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !raw.isEmpty else { return }
+
+        // The todo EXISTS now. Nothing below this line is allowed to delay it, and if the
+        // model never answers this is still a working todo in a working todo list.
         let parsed = DateParser.parse(raw)
-        store.add(title: parsed.title, due: parsed.due)
+        let todo = store.add(title: parsed.title, due: parsed.due)
         draft = ""
+
+        Task { await enrich(raw, into: todo.id) }
+    }
+
+    /// Enrichment decorates a todo that already works. It never creates one and it never
+    /// overwrites something the user has since edited.
+    private func enrich(_ raw: String, into id: UUID) async {
+        state.aiMessage = nil
+        let outcome = await intelligence.enrich(raw) { phase in
+            Task { @MainActor in state.aiPhase = phase }
+        }
+        state.aiPhase = .idle
+        switch outcome {
+        case .parsed(let e):
+            withAnimation(Motion.settleSoft.animation) { store.applyEnrichment(e, to: id) }
+        case .failed(let message), .unavailable(let message):
+            state.aiMessage = message
+        }
     }
 
     private var emptyState: some View {
@@ -172,7 +196,8 @@ struct PanelContentView: View {
                             datePickingID = nil
                         },
                         onSnooze: { d in snooze(todo, until: d) },
-                        onDelete: { store.delete(todo.id) })
+                        onDelete: { store.delete(todo.id) },
+                        onConfirmDue: { store.confirmDue(todo.id) })
                     .onHover { hoveredID = $0 ? todo.id : (hoveredID == todo.id ? nil : hoveredID) }
             }
         }

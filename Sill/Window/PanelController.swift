@@ -41,6 +41,12 @@ final class PanelState {
     /// Raised when a row asks to be snoozed from the keyboard.
     var snoozeRequestID: UUID?
 
+    /// Model phase. Drives the waterline and nothing else: capture never waits on it.
+    var aiPhase: IntelligenceBridge.Phase = .idle
+    /// Set when the model is missing or the call failed. Tertiary, below the fold of
+    /// attention, because this is a working app and not a broken one.
+    var aiMessage: String?
+
     /// Progress at a given instant. Pure function of the clock, which is what lets the Canvas
     /// redraw every frame instead of once per withAnimation call.
     func progress(at date: Date, reduceMotion: Bool) -> Double {
@@ -106,6 +112,7 @@ final class PanelController {
     private var keyMonitor: Any?
     let state = PanelState()
     let store = TodoStore()
+    let intelligence = IntelligenceBridge()
     let probe = FrameProbe()
 
     private var windowSize: CGSize {
@@ -152,7 +159,8 @@ final class PanelController {
         let mask = HitMaskView(frame: NSRect(origin: .zero, size: size))
         mask.autoresizingMask = [.width, .height]
 
-        let root = PanelRootView(state: state, store: store, probe: probe)
+        let root = PanelRootView(state: state, store: store,
+                                 intelligence: intelligence, probe: probe)
         let hosting = NSHostingView(rootView: root)
         hosting.frame = mask.bounds
         hosting.autoresizingMask = [.width, .height]
