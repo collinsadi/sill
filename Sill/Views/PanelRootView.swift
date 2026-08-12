@@ -21,6 +21,7 @@ struct PanelRootView: View {
     @Bindable var state: PanelState
     var store: TodoStore
     var intelligence: IntelligenceBridge
+    var reminders: ReminderScheduler
     var probe: FrameProbe?
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -46,10 +47,16 @@ struct PanelRootView: View {
 
                     SpecularOverlay(geometry: state.geometry, insetX: insetX, progress: p)
 
-                    PanelContentView(store: store, state: state, intelligence: intelligence, progress: p, isExpanded: state.isExpanded)
+                    if reminders.peekVisible && !state.isExpanded {
+                        PeekView(scheduler: reminders, store: store, progress: p)
+                            .frame(width: Tokens.Geo.panelWidth)
+                            .offset(x: insetX, y: state.geometry.hostHeight)
+                    } else {
+                        PanelContentView(store: store, state: state, intelligence: intelligence, progress: p, isExpanded: state.isExpanded)
                         .frame(width: Tokens.Geo.panelWidth)
                         .offset(x: insetX, y: state.geometry.hostHeight)
                         .allowsHitTesting(p > 0.9)
+                    }
                     // Only live while collapsed. Once open, this layer must not sit above the
                     // content or it swallows every click before a row can see it.
                     if p < 0.5 {
@@ -62,5 +69,13 @@ struct PanelRootView: View {
             }
         }
         .ignoresSafeArea()
+        .onChange(of: reminders.level) { _, lvl in
+            state.pendant = lvl.pendant
+        }
+        .onChange(of: reminders.peekVisible) { _, showing in
+            // The peek is a smaller panel, not the full one, and it never becomes the full one.
+            state.peekMode = showing
+            if showing { state.beginOpen() } else if !state.isExpanded { state.beginClose(from: 1) }
+        }
     }
 }

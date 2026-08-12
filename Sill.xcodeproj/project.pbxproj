@@ -14,10 +14,12 @@
 		0C5AB002FBF0F7D42E39E3BE /* IntelligenceBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523212C3212CC18DD6696702 /* IntelligenceBridge.swift */; };
 		4112B3B161316C7A09087A04 /* Morph.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA417CE64E7F6B4882AC4E0 /* Morph.swift */; };
 		7459C10528DC25ED585A43C5 /* Silhouette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F47280F550592EA2DBC725B /* Silhouette.swift */; };
+		B7EC72893EC8C327E9C720F4 /* ReminderScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D130D44D382B20982DF9D4E /* ReminderScheduler.swift */; };
 		12F4B276D6CEC849DF58ED8D /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB292631B8838464489629A /* DateParser.swift */; };
 		D8BAAFE2A0756A6AFB3C5018 /* TodoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4229F78396F99EFA3CA738 /* TodoStore.swift */; };
 		B60BE15241CD9B0D97F4A32A /* PanelContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093B0BC13475AA6DBF18F745 /* PanelContentView.swift */; };
 		84CE780D8691B8EB443F5926 /* PanelRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0AE980191B78281999DAF8 /* PanelRootView.swift */; };
+		1DB8F5ADED932132874325CF /* PeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9250904430659CB1C596D5C /* PeekView.swift */; };
 		1C0FB4C2AC31A4069FF4C3D7 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089CB922812F79FC31EA100C /* RowView.swift */; };
 		EACF4C453338D2BD9AF98692 /* Waterline.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE52988CAB03299ED7C32181 /* Waterline.swift */; };
 		A3AE22B17053CB6ECE698CBE /* WeekStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733599F4D6D0DBF85E336F91 /* WeekStrip.swift */; };
@@ -39,10 +41,12 @@
 		523212C3212CC18DD6696702 /* IntelligenceBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntelligenceBridge.swift; path = Sill/Intelligence/IntelligenceBridge.swift; sourceTree = SOURCE_ROOT; };
 		ABA417CE64E7F6B4882AC4E0 /* Morph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Morph.swift; path = Sill/Render/Morph.swift; sourceTree = SOURCE_ROOT; };
 		6F47280F550592EA2DBC725B /* Silhouette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Silhouette.swift; path = Sill/Render/Silhouette.swift; sourceTree = SOURCE_ROOT; };
+		6D130D44D382B20982DF9D4E /* ReminderScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReminderScheduler.swift; path = Sill/Scheduling/ReminderScheduler.swift; sourceTree = SOURCE_ROOT; };
 		1AB292631B8838464489629A /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateParser.swift; path = Sill/Store/DateParser.swift; sourceTree = SOURCE_ROOT; };
 		BC4229F78396F99EFA3CA738 /* TodoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodoStore.swift; path = Sill/Store/TodoStore.swift; sourceTree = SOURCE_ROOT; };
 		093B0BC13475AA6DBF18F745 /* PanelContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PanelContentView.swift; path = Sill/Views/PanelContentView.swift; sourceTree = SOURCE_ROOT; };
 		DA0AE980191B78281999DAF8 /* PanelRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PanelRootView.swift; path = Sill/Views/PanelRootView.swift; sourceTree = SOURCE_ROOT; };
+		D9250904430659CB1C596D5C /* PeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PeekView.swift; path = Sill/Views/PeekView.swift; sourceTree = SOURCE_ROOT; };
 		089CB922812F79FC31EA100C /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RowView.swift; path = Sill/Views/RowView.swift; sourceTree = SOURCE_ROOT; };
 		EE52988CAB03299ED7C32181 /* Waterline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Waterline.swift; path = Sill/Views/Waterline.swift; sourceTree = SOURCE_ROOT; };
 		733599F4D6D0DBF85E336F91 /* WeekStrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeekStrip.swift; path = Sill/Views/WeekStrip.swift; sourceTree = SOURCE_ROOT; };
@@ -85,10 +89,12 @@
 				523212C3212CC18DD6696702 /* IntelligenceBridge.swift */,
 				ABA417CE64E7F6B4882AC4E0 /* Morph.swift */,
 				6F47280F550592EA2DBC725B /* Silhouette.swift */,
+				6D130D44D382B20982DF9D4E /* ReminderScheduler.swift */,
 				1AB292631B8838464489629A /* DateParser.swift */,
 				BC4229F78396F99EFA3CA738 /* TodoStore.swift */,
 				093B0BC13475AA6DBF18F745 /* PanelContentView.swift */,
 				DA0AE980191B78281999DAF8 /* PanelRootView.swift */,
+				D9250904430659CB1C596D5C /* PeekView.swift */,
 				089CB922812F79FC31EA100C /* RowView.swift */,
 				EE52988CAB03299ED7C32181 /* Waterline.swift */,
 				733599F4D6D0DBF85E336F91 /* WeekStrip.swift */,
@@ -190,10 +196,12 @@
 				0C5AB002FBF0F7D42E39E3BE /* IntelligenceBridge.swift in Sources */,
 				4112B3B161316C7A09087A04 /* Morph.swift in Sources */,
 				7459C10528DC25ED585A43C5 /* Silhouette.swift in Sources */,
+				B7EC72893EC8C327E9C720F4 /* ReminderScheduler.swift in Sources */,
 				12F4B276D6CEC849DF58ED8D /* DateParser.swift in Sources */,
 				D8BAAFE2A0756A6AFB3C5018 /* TodoStore.swift in Sources */,
 				B60BE15241CD9B0D97F4A32A /* PanelContentView.swift in Sources */,
 				84CE780D8691B8EB443F5926 /* PanelRootView.swift in Sources */,
+				1DB8F5ADED932132874325CF /* PeekView.swift in Sources */,
 				1C0FB4C2AC31A4069FF4C3D7 /* RowView.swift in Sources */,
 				EACF4C453338D2BD9AF98692 /* Waterline.swift in Sources */,
 				A3AE22B17053CB6ECE698CBE /* WeekStrip.swift in Sources */,

@@ -47,10 +47,18 @@ final class PanelState {
     /// attention, because this is a working app and not a broken one.
     var aiMessage: String?
 
+    /// A held pendant while something is due. It never detaches: detaching means the app
+    /// opened something, holding means there is something here.
+    var pendant: Double = 0
+    /// Peek height, used instead of the full panel while a reminder is showing.
+    var peekMode = false
+    static let peekHeight: CGFloat = 150
+
     /// Progress at a given instant. Pure function of the clock, which is what lets the Canvas
     /// redraw every frame instead of once per withAnimation call.
     func progress(at date: Date, reduceMotion: Bool) -> Double {
-        guard let start = morphStart else { return morphResting }
+        // Collapsed but something is due: hold the pendant rather than sitting flat.
+        guard let start = morphStart else { return max(morphResting, isExpanded ? 0 : pendant) }
         let t = date.timeIntervalSince(start)
 
         if reduceMotion {
@@ -98,7 +106,7 @@ final class PanelState {
             hostWidth: m?.hostWidth ?? HostMetrics.fallbackPillWidth,
             hostHeight: m?.hostHeight ?? HostMetrics.fallbackPillHeight,
             panelWidth: Self.panelWidth,
-            panelHeight: Self.maxPanelHeight,
+            panelHeight: peekMode ? Self.peekHeight : Self.maxPanelHeight,
             hardwareRadius: m?.hardwareCornerRadius ?? 9
         )
     }
@@ -113,6 +121,7 @@ final class PanelController {
     let state = PanelState()
     let store = TodoStore()
     let intelligence = IntelligenceBridge()
+    let reminders = ReminderScheduler()
     let probe = FrameProbe()
 
     private var windowSize: CGSize {
@@ -123,6 +132,9 @@ final class PanelController {
     func start() {
         refreshMetrics()
         buildPanel()
+
+        reminders.panelIsVisible = { [weak self] in self?.state.isExpanded ?? false }
+        reminders.start(store: store)
         // Clicking anywhere else closes the panel. Resigning active covers another app,
         // the desktop, and Mission Control, and needs no permission prompt, unlike a global
         // mouse monitor.
@@ -160,7 +172,7 @@ final class PanelController {
         mask.autoresizingMask = [.width, .height]
 
         let root = PanelRootView(state: state, store: store,
-                                 intelligence: intelligence, probe: probe)
+                                 intelligence: intelligence, reminders: reminders, probe: probe)
         let hosting = NSHostingView(rootView: root)
         hosting.frame = mask.bounds
         hosting.autoresizingMask = [.width, .height]
