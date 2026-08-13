@@ -109,7 +109,12 @@ final class ReminderScheduler {
             if panelIsVisible() {
                 showPeek()
             } else {
-                postSystemNotification(for: first, queued: queued)
+                if !notified.contains(first.id) {
+                    notified.insert(first.id)
+                    Self.post(id: first.id.uuidString,
+                              title: first.title,
+                              body: queued > 0 ? "Due now. \(queued) more came due." : "Due now.")
+                }
             }
             if soundEnabled { NSSound(named: "Pop")?.play() }
         }
@@ -143,24 +148,21 @@ final class ReminderScheduler {
 
     /// When the panel is not on screen this goes through Notification Center. We control the
     /// payload, not the material: same voice, same two actions, no marketing.
-    private func postSystemNotification(for todo: Todo, queued: Int) {
-        guard !notified.contains(todo.id) else { return }
-        notified.insert(todo.id)
-
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .sound]) { granted, _ in
-            guard granted else { return }
-            Task { @MainActor in
+    ///
+    /// `nonisolated static` on purpose. A closure declared inside a @MainActor type inherits
+    /// that isolation, and UNUserNotificationCenter runs its completion handler on a
+    /// background queue, so the isolation check trapped and took the whole app down on launch.
+    /// Bookkeeping stays isolated; only plain values cross.
+    nonisolated static func post(id: String, title: String, body: String) {
+        UNUserNotificationCenter.current()
+            .requestAuthorization(options: [.alert]) { granted, _ in
+                guard granted else { return }
                 let content = UNMutableNotificationContent()
-                content.title = todo.title
-                content.body = queued > 0
-                    ? "Due now. \(queued) more came due."
-                    : "Due now."
+                content.title = title
+                content.body = body
                 content.sound = nil
-                let request = UNNotificationRequest(identifier: todo.id.uuidString,
-                                                    content: content, trigger: nil)
-                center.add(request)
+                UNUserNotificationCenter.current().add(
+                    UNNotificationRequest(identifier: id, content: content, trigger: nil))
             }
-        }
     }
 }

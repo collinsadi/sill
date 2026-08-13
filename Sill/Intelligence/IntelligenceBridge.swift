@@ -48,7 +48,7 @@ actor IntelligenceBridge {
         return nil
     }
 
-    private let timeout: Duration = .seconds(20)
+    private let timeout: Duration = .seconds(60)
 
     private static let prompt = """
     Extract structured data from this todo. Reply with ONLY a JSON object, no prose, no fences.
