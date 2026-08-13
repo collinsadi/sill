@@ -1,5 +1,7 @@
 # Sill
 
+<img src="docs/images/icon.png" width="96" align="right" alt="Sill icon">
+
 A todo app that lives in the MacBook notch.
 
 Collapsed, it is a single hairline of light. Touch it and that line bulges, necks, and pinches
@@ -47,8 +49,6 @@ invisible.
 
 ## The AI layer
 
-![The eight model states](docs/images/ai-states.png)
-
 A locally authenticated Claude session parses natural language into a titled todo with a date
 and a tag. Three rules govern it:
 
@@ -76,8 +76,11 @@ Built and working:
 | Keyboard | Arrow keys, Return to edit, Space to complete, S to snooze, Escape to retract |
 | Persistence | Atomic writes, survives relaunch |
 
-Not built yet: the AI layer, reminders, the global hotkey, drag and drop onto the notch, the
-slash command list, and the non notch pill fallback.
+| AI layer | Local Claude bridge, streaming, editable chips, three failure states |
+| Reminders | Held pendant, peek, escalation ceiling, quiet hours, system fallback |
+
+Not built yet: the global hotkey, drag and drop onto the notch, the slash command list, and
+the non notch pill fallback.
 
 ## Build
 
@@ -94,13 +97,20 @@ modernise the format.
 
 To install:
 
-```sh
-cp -R ~/Library/Developer/Xcode/DerivedData/Sill-*/Build/Products/Release/Sill.app /Applications/
-open -a /Applications/Sill.app
-```
+Download the disk image from [Releases](https://github.com/collinsadi/sill/releases), open it,
+and drag Sill into Applications.
 
-There is no Dock icon and no menu bar item. Click the notch to open. `killall Sill` to quit
-until the command list ships.
+The app is signed with a Developer ID but is **not notarized**, so the first launch needs a
+right click and Open rather than a double click. macOS will not offer that path from a double
+click alone.
+
+There is no Dock icon and no menu bar item. Click the notch to open, right click it to quit.
+
+To build the installer yourself:
+
+```sh
+./tools/makedmg.sh <path-to-Sill.app> build/Sill.dmg
+```
 
 ## Architecture
 

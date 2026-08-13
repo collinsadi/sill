@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Unsandboxed by design: the intelligence layer spawns the local claude binary.
+	     A sandboxed build would need an XPC helper, which is three hops and a second
+	     crash domain for a feature that already degrades gracefully when absent. -->
+	<key>com.apple.security.app-sandbox</key>
+	<false/>
+	<!-- Hardened runtime is on. The bridge launches a Node based CLI, which needs the
+	     JIT and unsigned executable memory allowances that runtime otherwise blocks. -->
+	<key>com.apple.security.cs.allow-jit</key>
+	<true/>
+	<key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+	<true/>
+	<key>com.apple.security.cs.disable-library-validation</key>
+	<true/>
+</dict>
+</plist>

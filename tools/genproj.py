@@ -47,7 +47,7 @@ def resources():
     fdir = os.path.join(SRC_DIR, "Resources")
     if os.path.isdir(fdir):
         for f in sorted(os.listdir(fdir)):
-            if f.endswith(".ttf"):
+            if f.endswith(".ttf") or f.endswith(".icns"):
                 out.append(os.path.relpath(os.path.join(fdir, f), ROOT))
     return out
 
@@ -115,7 +115,7 @@ def main():
         A('\t\t%s /* %s */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; name = %s; path = %s; sourceTree = SOURCE_ROOT; };'
           % (uid("fr:" + p), os.path.basename(p), os.path.basename(p), p))
     for p in res:
-        kind = "file.ttf" if p.endswith(".ttf") else "folder.assetcatalog"
+        kind = "file.ttf" if p.endswith(".ttf") else ("image.icns" if p.endswith(".icns") else "folder.assetcatalog")
         A('\t\t%s /* %s */ = {isa = PBXFileReference; lastKnownFileType = %s; name = %s; path = %s; sourceTree = SOURCE_ROOT; };'
           % (uid("fr:" + p), os.path.basename(p), kind, os.path.basename(p), p))
     A('\t\t%s /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = %s/Info.plist; sourceTree = SOURCE_ROOT; };'
@@ -245,10 +245,11 @@ def main():
     target_common = [
         "ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;" if res else "",
         "CODE_SIGN_STYLE = Automatic;",
-        "CODE_SIGN_IDENTITY = \"-\";",
+        "CODE_SIGN_IDENTITY = \"$(SILL_SIGN_IDENTITY)\";",
         "COMBINE_HIDPI_IMAGES = YES;",
         "CURRENT_PROJECT_VERSION = 1;",
-        "ENABLE_HARDENED_RUNTIME = NO;",
+        "ENABLE_HARDENED_RUNTIME = YES;",
+        "CODE_SIGN_ENTITLEMENTS = %s/Sill.entitlements;" % APP,
         "GENERATE_INFOPLIST_FILE = NO;",
         "INFOPLIST_FILE = %s/Info.plist;" % APP,
         "MARKETING_VERSION = 0.1;",

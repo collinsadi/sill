@@ -29,15 +29,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         controller.start()
 
-        // First run only. Removed at M3 when capture can create these for real.
-        if controller.store.todos.isEmpty {
-            controller.store.add(title: "Water the fig")
-            controller.store.add(title: "Call the dentist",
-                                 due: Calendar.current.date(byAdding: .hour, value: -30, to: Date()))
-            controller.store.add(title: "Send the lease back",
-                                 due: Calendar.current.date(byAdding: .day, value: 2, to: Date()))
-            controller.store.saveNow()
-        }
 
         let env = ProcessInfo.processInfo.environment
         if let dir = env["SILL_FILMSTRIP"] {
@@ -45,6 +36,31 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             files.forEach { print("[sill] wrote \($0)") }
             fflush(stdout)
             NSApp.terminate(nil)
+            return
+        }
+        // Proves the intelligence bridge survives the hardened runtime, which is the one
+        // thing enabling it could plausibly have broken.
+        if env["SILL_TEST_AI"] == "1" {
+            Task { @MainActor in
+                var report: [String] = []
+                let binary = IntelligenceBridge.resolveBinary()
+                report.append("binary: " + (binary?.path ?? "NOT FOUND"))
+                print("[sill] binary:", binary?.path ?? "NOT FOUND")
+                let outcome = await controller.intelligence.enrich("email Sam about the invoice before Friday") { phase in
+                    print("[sill] phase:", phase)
+                }
+                report.append("phases reached")
+                switch outcome {
+                case .parsed(let e):
+                    report.append("PARSED title=\(e.title ?? "nil") due=\(e.due.map(String.init(describing:)) ?? "nil") tag=\(e.tag ?? "nil") inferred=\(e.dueInferred)")
+                case .failed(let m): report.append("FAILED: " + m)
+                case .unavailable(let m): report.append("UNAVAILABLE: " + m)
+                }
+                fflush(stdout)
+                try? report.joined(separator: "\n").write(toFile: "/tmp/sill-ai.log",
+                                                          atomically: true, encoding: .utf8)
+                NSApp.terminate(nil)
+            }
             return
         }
         if env["SILL_PROFILE"] == "1" {

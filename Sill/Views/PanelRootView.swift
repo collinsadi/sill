@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 
 /// Counts Canvas draws so the morph is profiled with real numbers rather than vibes.
 @MainActor
@@ -69,6 +70,11 @@ struct PanelRootView: View {
             }
         }
         .ignoresSafeArea()
+        .contextMenu {
+            // The essentials also sit here, because a person who cannot find the app should
+            // never have to learn a command to quit it.
+            Button("Quit Sill") { NSApp.terminate(nil) }
+        }
         .onChange(of: reminders.level) { _, lvl in
             state.pendant = lvl.pendant
         }

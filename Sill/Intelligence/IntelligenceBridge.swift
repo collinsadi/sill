@@ -78,9 +78,11 @@ actor IntelligenceBridge {
             "--model", "haiku"
         ]
         let out = Pipe()
-        let err = Pipe()
         process.standardOutput = out
-        process.standardError = err
+        // Discarded at the OS level rather than through a pipe. An undrained pipe deadlocks
+        // the child once its buffer fills, and draining it with a blocking read inside a Task
+        // starves the cooperative pool, which deadlocks us instead.
+        process.standardError = FileHandle.nullDevice
         process.standardInput = FileHandle.nullDevice
 
         do {
@@ -94,6 +96,7 @@ actor IntelligenceBridge {
         let work = Task { () -> EnrichmentOutcome in
             var sawContent = false
             var assembled = ""
+            var streamed = ""
             do {
                 for try await line in out.fileHandleForReading.bytes.lines {
                     guard !Task.isCancelled else { break }
@@ -108,11 +111,18 @@ actor IntelligenceBridge {
                         onPhase(.streaming)
                     }
                     if let result = obj["result"] as? String { assembled = result }
+                    // Accumulate streamed text so a missing result event is survivable.
+                    if let event = obj["event"] as? [String: Any],
+                       let delta = event["delta"] as? [String: Any],
+                       let text = delta["text"] as? String {
+                        streamed += text
+                    }
                 }
             } catch {
                 return .failed("Could not reach Claude. The todo saved exactly as you typed it.")
             }
-            guard let e = Self.decode(assembled) else {
+            // Fall back to the assembled assistant text when no result event arrived.
+            guard let e = Self.decode(assembled) ?? Self.decode(streamed) else {
                 return .failed("Could not reach Claude. The todo saved exactly as you typed it.")
             }
             return .parsed(e)

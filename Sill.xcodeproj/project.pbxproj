@@ -27,6 +27,7 @@
 		1CE661FC10F320F373CC1FD8 /* NotchPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88E00C6FA8FCC38834B2185 /* NotchPanel.swift */; };
 		637D541095A3AEB2BD0CFED0 /* PanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1624B239F0CB89B713FB426 /* PanelController.swift */; };
 		A02765FE297CBB58723EF201 /* ScreenGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A81B18D1A7C39230ECC9FB /* ScreenGeometry.swift */; };
+		5B1798A8E7532C9804059739 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 681042042660508B16722012 /* AppIcon.icns */; };
 		6F16A64AD94B4E1F36F694A7 /* DMMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 428443C4CDE71BC4CFAA9206 /* DMMono-Regular.ttf */; };
 		3E8CF345D35E5357A135ACEA /* Fraunces.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F6F49021474E739B3DBAF3D /* Fraunces.ttf */; };
 		D1288D24D5A94F3B4A880E02 /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED0CDA143DDCB546E5E6EDBB /* IBMPlexSans.ttf */; };
@@ -54,6 +55,7 @@
 		F88E00C6FA8FCC38834B2185 /* NotchPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotchPanel.swift; path = Sill/Window/NotchPanel.swift; sourceTree = SOURCE_ROOT; };
 		F1624B239F0CB89B713FB426 /* PanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PanelController.swift; path = Sill/Window/PanelController.swift; sourceTree = SOURCE_ROOT; };
 		02A81B18D1A7C39230ECC9FB /* ScreenGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScreenGeometry.swift; path = Sill/Window/ScreenGeometry.swift; sourceTree = SOURCE_ROOT; };
+		681042042660508B16722012 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = AppIcon.icns; path = Sill/Resources/AppIcon.icns; sourceTree = SOURCE_ROOT; };
 		428443C4CDE71BC4CFAA9206 /* DMMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = DMMono-Regular.ttf; path = Sill/Resources/DMMono-Regular.ttf; sourceTree = SOURCE_ROOT; };
 		9F6F49021474E739B3DBAF3D /* Fraunces.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = Fraunces.ttf; path = Sill/Resources/Fraunces.ttf; sourceTree = SOURCE_ROOT; };
 		ED0CDA143DDCB546E5E6EDBB /* IBMPlexSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = IBMPlexSans.ttf; path = Sill/Resources/IBMPlexSans.ttf; sourceTree = SOURCE_ROOT; };
@@ -102,6 +104,7 @@
 				F88E00C6FA8FCC38834B2185 /* NotchPanel.swift */,
 				F1624B239F0CB89B713FB426 /* PanelController.swift */,
 				02A81B18D1A7C39230ECC9FB /* ScreenGeometry.swift */,
+				681042042660508B16722012 /* AppIcon.icns */,
 				428443C4CDE71BC4CFAA9206 /* DMMono-Regular.ttf */,
 				9F6F49021474E739B3DBAF3D /* Fraunces.ttf */,
 				ED0CDA143DDCB546E5E6EDBB /* IBMPlexSans.ttf */,
@@ -176,6 +179,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B1798A8E7532C9804059739 /* AppIcon.icns in Resources */,
 				6F16A64AD94B4E1F36F694A7 /* DMMono-Regular.ttf in Resources */,
 				3E8CF345D35E5357A135ACEA /* Fraunces.ttf in Resources */,
 				D1288D24D5A94F3B4A880E02 /* IBMPlexSans.ttf in Resources */,
@@ -259,10 +263,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "$(SILL_SIGN_IDENTITY)";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				CODE_SIGN_ENTITLEMENTS = Sill/Sill.entitlements;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Sill/Info.plist;
 				MARKETING_VERSION = 0.1;
@@ -281,10 +286,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "$(SILL_SIGN_IDENTITY)";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				CODE_SIGN_ENTITLEMENTS = Sill/Sill.entitlements;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Sill/Info.plist;
 				MARKETING_VERSION = 0.1;

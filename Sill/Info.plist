@@ -26,6 +26,8 @@
 	<key>LSUIElement</key>
 	<true/>
 	<!-- Bundled typefaces. Registered from the Resources root at launch. -->
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
 	<key>ATSApplicationFontsPath</key>
 	<string>.</string>
 </dict>
