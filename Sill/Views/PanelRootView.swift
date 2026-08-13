@@ -23,6 +23,7 @@ struct PanelRootView: View {
     var store: TodoStore
     var intelligence: IntelligenceBridge
     var reminders: ReminderScheduler
+    var settings: AppSettings
     var probe: FrameProbe?
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -53,7 +54,7 @@ struct PanelRootView: View {
                             .frame(width: Tokens.Geo.panelWidth)
                             .offset(x: insetX, y: state.geometry.hostHeight)
                     } else {
-                        PanelContentView(store: store, state: state, intelligence: intelligence, progress: p, isExpanded: state.isExpanded)
+                        PanelContentView(store: store, state: state, intelligence: intelligence, settings: settings, progress: p, isExpanded: state.isExpanded)
                         .frame(width: Tokens.Geo.panelWidth)
                         .offset(x: insetX, y: state.geometry.hostHeight)
                         .allowsHitTesting(p > 0.9)

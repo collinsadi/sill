@@ -8,6 +8,7 @@ struct PanelContentView: View {
     var store: TodoStore
     @Bindable var state: PanelState
     var intelligence: IntelligenceBridge
+    var settings: AppSettings
     var progress: Double
     var isExpanded: Bool
     @State private var hoveredID: UUID?
@@ -26,7 +27,9 @@ struct PanelContentView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Tokens.Space.s36) {
             captureField
-            if store.visible.isEmpty {
+            if let q = CommandList.query(from: draft) {
+                commandList(q)
+            } else if store.visible.isEmpty {
                 emptyState
             } else {
                 list
@@ -112,6 +115,16 @@ struct PanelContentView: View {
         let raw = draft.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !raw.isEmpty else { return }
 
+        // In command mode Return runs the top match. Without this, typing /quit would create
+        // a todo called "/quit", which is the least helpful possible outcome.
+        if let q = CommandList.query(from: raw) {
+            let matches = CommandList.filter(
+                CommandList.all(settings: settings, hotkeyLabel: "\u{2325} Space"), q)
+            matches.first?.run()
+            draft = ""
+            return
+        }
+
         // The todo EXISTS now. Nothing below this line is allowed to delay it, and if the
         // model never answers this is still a working todo in a working todo list.
         let parsed = DateParser.parse(raw)
@@ -168,6 +181,31 @@ struct PanelContentView: View {
             Spacer(minLength: 0)
         }
         .transition(.opacity)
+    }
+
+    /// A forward slash turns capture into commands. The list REPLACES the todos rather than
+    /// covering them, because an overlay would need a container and a container would be a card.
+    private func commandList(_ query: String) -> some View {
+        let commands = CommandList.filter(
+            CommandList.all(settings: settings, hotkeyLabel: "\u{2325} Space"), query)
+        return VStack(spacing: 0) {
+            ForEach(Array(commands.enumerated()), id: \.element.id) { index, command in
+                HStack(spacing: Tokens.Space.s12) {
+                    Text(command.title)
+                        .font(Tokens.body(Tokens.TypeSize.bodyRow))
+                        .foregroundStyle(index == 0 ? Tokens.textPrimary : Tokens.textTertiary)
+                    Spacer(minLength: 0)
+                    if let value = command.value {
+                        Text(value)
+                            .font(Tokens.mono(Tokens.TypeSize.monoStamp))
+                            .foregroundStyle(Tokens.textTertiary)
+                    }
+                }
+                .frame(height: Tokens.Geo.rowHeight)
+                .contentShape(Rectangle())
+                .onTapGesture { command.run(); draft = "" }
+            }
+        }
     }
 
     private var list: some View {

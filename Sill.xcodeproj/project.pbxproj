@@ -15,6 +15,7 @@
 		4112B3B161316C7A09087A04 /* Morph.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA417CE64E7F6B4882AC4E0 /* Morph.swift */; };
 		7459C10528DC25ED585A43C5 /* Silhouette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F47280F550592EA2DBC725B /* Silhouette.swift */; };
 		B7EC72893EC8C327E9C720F4 /* ReminderScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D130D44D382B20982DF9D4E /* ReminderScheduler.swift */; };
+		8ED857D8C52177E6F236DF3C /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444094F866EB98D4CA3C1D67 /* Commands.swift */; };
 		12F4B276D6CEC849DF58ED8D /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB292631B8838464489629A /* DateParser.swift */; };
 		D8BAAFE2A0756A6AFB3C5018 /* TodoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4229F78396F99EFA3CA738 /* TodoStore.swift */; };
 		B60BE15241CD9B0D97F4A32A /* PanelContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093B0BC13475AA6DBF18F745 /* PanelContentView.swift */; };
@@ -24,6 +25,7 @@
 		EACF4C453338D2BD9AF98692 /* Waterline.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE52988CAB03299ED7C32181 /* Waterline.swift */; };
 		A3AE22B17053CB6ECE698CBE /* WeekStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733599F4D6D0DBF85E336F91 /* WeekStrip.swift */; };
 		BE082B6B3ADB724A10927FDB /* HitMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4A8C443B6EC42468754F9 /* HitMaskView.swift */; };
+		66F91B5BED70BAE7ADF8F9DB /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89A1DC839D2992DC016DA86 /* HotKey.swift */; };
 		1CE661FC10F320F373CC1FD8 /* NotchPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88E00C6FA8FCC38834B2185 /* NotchPanel.swift */; };
 		637D541095A3AEB2BD0CFED0 /* PanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1624B239F0CB89B713FB426 /* PanelController.swift */; };
 		A02765FE297CBB58723EF201 /* ScreenGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A81B18D1A7C39230ECC9FB /* ScreenGeometry.swift */; };
@@ -43,6 +45,7 @@
 		ABA417CE64E7F6B4882AC4E0 /* Morph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Morph.swift; path = Sill/Render/Morph.swift; sourceTree = SOURCE_ROOT; };
 		6F47280F550592EA2DBC725B /* Silhouette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Silhouette.swift; path = Sill/Render/Silhouette.swift; sourceTree = SOURCE_ROOT; };
 		6D130D44D382B20982DF9D4E /* ReminderScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReminderScheduler.swift; path = Sill/Scheduling/ReminderScheduler.swift; sourceTree = SOURCE_ROOT; };
+		444094F866EB98D4CA3C1D67 /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Commands.swift; path = Sill/Store/Commands.swift; sourceTree = SOURCE_ROOT; };
 		1AB292631B8838464489629A /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateParser.swift; path = Sill/Store/DateParser.swift; sourceTree = SOURCE_ROOT; };
 		BC4229F78396F99EFA3CA738 /* TodoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodoStore.swift; path = Sill/Store/TodoStore.swift; sourceTree = SOURCE_ROOT; };
 		093B0BC13475AA6DBF18F745 /* PanelContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PanelContentView.swift; path = Sill/Views/PanelContentView.swift; sourceTree = SOURCE_ROOT; };
@@ -52,6 +55,7 @@
 		EE52988CAB03299ED7C32181 /* Waterline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Waterline.swift; path = Sill/Views/Waterline.swift; sourceTree = SOURCE_ROOT; };
 		733599F4D6D0DBF85E336F91 /* WeekStrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeekStrip.swift; path = Sill/Views/WeekStrip.swift; sourceTree = SOURCE_ROOT; };
 		05F4A8C443B6EC42468754F9 /* HitMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HitMaskView.swift; path = Sill/Window/HitMaskView.swift; sourceTree = SOURCE_ROOT; };
+		B89A1DC839D2992DC016DA86 /* HotKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HotKey.swift; path = Sill/Window/HotKey.swift; sourceTree = SOURCE_ROOT; };
 		F88E00C6FA8FCC38834B2185 /* NotchPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotchPanel.swift; path = Sill/Window/NotchPanel.swift; sourceTree = SOURCE_ROOT; };
 		F1624B239F0CB89B713FB426 /* PanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PanelController.swift; path = Sill/Window/PanelController.swift; sourceTree = SOURCE_ROOT; };
 		02A81B18D1A7C39230ECC9FB /* ScreenGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScreenGeometry.swift; path = Sill/Window/ScreenGeometry.swift; sourceTree = SOURCE_ROOT; };
@@ -92,6 +96,7 @@
 				ABA417CE64E7F6B4882AC4E0 /* Morph.swift */,
 				6F47280F550592EA2DBC725B /* Silhouette.swift */,
 				6D130D44D382B20982DF9D4E /* ReminderScheduler.swift */,
+				444094F866EB98D4CA3C1D67 /* Commands.swift */,
 				1AB292631B8838464489629A /* DateParser.swift */,
 				BC4229F78396F99EFA3CA738 /* TodoStore.swift */,
 				093B0BC13475AA6DBF18F745 /* PanelContentView.swift */,
@@ -101,6 +106,7 @@
 				EE52988CAB03299ED7C32181 /* Waterline.swift */,
 				733599F4D6D0DBF85E336F91 /* WeekStrip.swift */,
 				05F4A8C443B6EC42468754F9 /* HitMaskView.swift */,
+				B89A1DC839D2992DC016DA86 /* HotKey.swift */,
 				F88E00C6FA8FCC38834B2185 /* NotchPanel.swift */,
 				F1624B239F0CB89B713FB426 /* PanelController.swift */,
 				02A81B18D1A7C39230ECC9FB /* ScreenGeometry.swift */,
@@ -201,6 +207,7 @@
 				4112B3B161316C7A09087A04 /* Morph.swift in Sources */,
 				7459C10528DC25ED585A43C5 /* Silhouette.swift in Sources */,
 				B7EC72893EC8C327E9C720F4 /* ReminderScheduler.swift in Sources */,
+				8ED857D8C52177E6F236DF3C /* Commands.swift in Sources */,
 				12F4B276D6CEC849DF58ED8D /* DateParser.swift in Sources */,
 				D8BAAFE2A0756A6AFB3C5018 /* TodoStore.swift in Sources */,
 				B60BE15241CD9B0D97F4A32A /* PanelContentView.swift in Sources */,
@@ -210,6 +217,7 @@
 				EACF4C453338D2BD9AF98692 /* Waterline.swift in Sources */,
 				A3AE22B17053CB6ECE698CBE /* WeekStrip.swift in Sources */,
 				BE082B6B3ADB724A10927FDB /* HitMaskView.swift in Sources */,
+				66F91B5BED70BAE7ADF8F9DB /* HotKey.swift in Sources */,
 				1CE661FC10F320F373CC1FD8 /* NotchPanel.swift in Sources */,
 				637D541095A3AEB2BD0CFED0 /* PanelController.swift in Sources */,
 				A02765FE297CBB58723EF201 /* ScreenGeometry.swift in Sources */,

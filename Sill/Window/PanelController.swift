@@ -122,6 +122,8 @@ final class PanelController {
     let store = TodoStore()
     let intelligence = IntelligenceBridge()
     let reminders = ReminderScheduler()
+    let settings = AppSettings()
+    private let hotKey = HotKey()
     let probe = FrameProbe()
 
     private var windowSize: CGSize {
@@ -135,6 +137,14 @@ final class PanelController {
 
         reminders.panelIsVisible = { [weak self] in self?.state.isExpanded ?? false }
         reminders.start(store: store)
+        reminders.soundEnabled = settings.soundEnabled
+
+        // Works on first launch with no permission prompt of any kind.
+        hotKey.register { [weak self] in
+            guard let self else { return }
+            if !self.state.isExpanded { self.toggle() }
+            else { NSApp.activate(ignoringOtherApps: true) }
+        }
         // Clicking anywhere else closes the panel. Resigning active covers another app,
         // the desktop, and Mission Control, and needs no permission prompt, unlike a global
         // mouse monitor.
@@ -171,8 +181,8 @@ final class PanelController {
         let mask = HitMaskView(frame: NSRect(origin: .zero, size: size))
         mask.autoresizingMask = [.width, .height]
 
-        let root = PanelRootView(state: state, store: store,
-                                 intelligence: intelligence, reminders: reminders, probe: probe)
+        let root = PanelRootView(state: state, store: store, intelligence: intelligence,
+                                 reminders: reminders, settings: settings, probe: probe)
         let hosting = NSHostingView(rootView: root)
         hosting.frame = mask.bounds
         hosting.autoresizingMask = [.width, .height]
