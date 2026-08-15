@@ -39,7 +39,8 @@ enum Morph {
     private static func easeOut(_ t: Double) -> Double { 1 - pow(1 - t, 3) }
 
     static func drop(progress p: Double, g: Silhouette.Geometry) -> DropGeometry {
-        let notchH = g.hostHeight
+        // Everything below is measured from the bottom of the host, wherever that is.
+        let notchH = g.hostTop + g.hostHeight
 
         if p <= bulgeEnd {
             // Mass gathers and swells downward. Still one body with the bead.
@@ -82,7 +83,13 @@ enum Morph {
 
     /// Blur radius drives how long the neck survives before the threshold cuts it.
     /// Too small and the drop separates instantly with no neck at all.
-    static let blurRadius: CGFloat = 11
+    ///
+    /// It has to scale with the host, though. A 22pt floating pill blurred by 11 loses so
+    /// much alpha that the threshold erases it completely, which is exactly what happened
+    /// the first time the flat display case was rendered.
+    static func blurRadius(for g: Silhouette.Geometry) -> CGFloat {
+        min(11, g.hostHeight * 0.34)
+    }
     static let alphaThreshold: CGFloat = 0.55
 }
 
@@ -101,17 +108,29 @@ struct MetaballCanvas: View {
             // Order matters. Filters apply to subsequent drawing, innermost last: the layer
             // is blurred first, then the threshold snaps the soft alpha back to a hard edge.
             ctx.addFilter(.alphaThreshold(min: Morph.alphaThreshold, color: .black))
-            ctx.addFilter(.blur(radius: Morph.blurRadius))
+            ctx.addFilter(.blur(radius: Morph.blurRadius(for: geometry)))
 
             ctx.drawLayer { inner in
                 let midX = insetX + geometry.panelWidth / 2
 
-                // The notch block. Always present, never moves. This is the bezel.
-                let notch = CGRect(x: midX - geometry.hostWidth / 2,
-                                   y: -geometry.hostHeight,
-                                   width: geometry.hostWidth,
-                                   height: geometry.hostHeight * 2)
-                inner.fill(Path(roundedRect: notch, cornerRadius: 0), with: .color(.black))
+                // The host. On a notched Mac this is the bezel itself, extended upward past
+                // the top of the window so it never shows an edge. On a flat display it is a
+                // floating pill that has to define itself completely, with no hardware to
+                // fuse with, which is the harder of the two cases.
+                if geometry.isNotched {
+                    let notch = CGRect(x: midX - geometry.hostWidth / 2,
+                                       y: -geometry.hostHeight,
+                                       width: geometry.hostWidth,
+                                       height: geometry.hostHeight * 2)
+                    inner.fill(Path(roundedRect: notch, cornerRadius: 0), with: .color(.black))
+                } else {
+                    let pill = CGRect(x: midX - geometry.hostWidth / 2,
+                                      y: geometry.hostTop,
+                                      width: geometry.hostWidth,
+                                      height: geometry.hostHeight)
+                    inner.fill(Path(roundedRect: pill, cornerRadius: geometry.hostHeight / 2),
+                               with: .color(.black))
+                }
 
                 // The drop.
                 let d = Morph.drop(progress: progress, g: geometry)

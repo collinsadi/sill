@@ -14,6 +14,12 @@ enum Silhouette {
         var panelHeight: CGFloat
         /// Notch corner radius. Reused for every outer corner and does not grow with the panel.
         var hardwareRadius: CGFloat
+        /// False on a Mac with no notch. The host is then a floating pill rather than a
+        /// hole in the bezel, which changes both its shape and where it sits.
+        var isNotched: Bool = true
+        /// Distance from the top of the window down to the host. Zero when notched, because
+        /// the notch IS the top. On a flat display the pill hangs below the menu bar.
+        var hostTop: CGFloat = 0
         /// The cove where the notch wall meets the panel shoulder. A transition, not a corner,
         /// so it is not bound by the corners-do-not-grow rule.
         var meniscusRadius: CGFloat = 20

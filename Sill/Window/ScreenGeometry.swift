@@ -15,6 +15,9 @@ struct HostMetrics: Equatable, Sendable {
     /// Top edge of the display, in screen coordinates.
     var screenTopY: CGFloat
     var screenFrame: CGRect
+    /// Notched Macs run a taller menu bar than flat ones. This is why the fallback is a
+    /// different design rather than a scaled one.
+    var menuBarHeight: CGFloat = 24
 
     /// The notch's own corner radius, which the design reuses for every outer corner of the
     /// panel and which deliberately does not grow as the panel extends.
@@ -45,7 +48,8 @@ enum ScreenGeometry {
                 hostHeight: left.height,
                 hostCenterX: left.maxX + width / 2,
                 screenTopY: frame.maxY,
-                screenFrame: frame
+                screenFrame: frame,
+                menuBarHeight: frame.maxY - screen.visibleFrame.maxY
             )
         }
 
@@ -55,7 +59,8 @@ enum ScreenGeometry {
             hostHeight: HostMetrics.fallbackPillHeight,
             hostCenterX: frame.midX,
             screenTopY: frame.maxY,
-            screenFrame: frame
+            screenFrame: frame,
+            menuBarHeight: frame.maxY - screen.visibleFrame.maxY
         )
     }
 

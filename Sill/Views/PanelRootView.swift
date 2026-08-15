@@ -52,11 +52,11 @@ struct PanelRootView: View {
                     if reminders.peekVisible && !state.isExpanded {
                         PeekView(scheduler: reminders, store: store, progress: p)
                             .frame(width: Tokens.Geo.panelWidth)
-                            .offset(x: insetX, y: state.geometry.hostHeight)
+                            .offset(x: insetX, y: state.geometry.hostTop + state.geometry.hostHeight)
                     } else {
                         PanelContentView(store: store, state: state, intelligence: intelligence, settings: settings, progress: p, isExpanded: state.isExpanded)
                         .frame(width: Tokens.Geo.panelWidth)
-                        .offset(x: insetX, y: state.geometry.hostHeight)
+                        .offset(x: insetX, y: state.geometry.hostTop + state.geometry.hostHeight)
                         .allowsHitTesting(p > 0.9)
                     }
                     // Only live while collapsed. Once open, this layer must not sit above the

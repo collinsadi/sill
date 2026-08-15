@@ -79,8 +79,10 @@ Built and working:
 | AI layer | Local Claude bridge, streaming, editable chips, three failure states |
 | Reminders | Held pendant, peek, escalation ceiling, quiet hours, system fallback |
 
-Not built yet: the global hotkey, drag and drop onto the notch, the slash command list, and
-the non notch pill fallback.
+| Hotkey and settings | Option Space from anywhere with no permission prompt, slash command list |
+| Non notch Macs | Floating pill below the menu bar, with the full light model |
+
+Not built yet: drag and drop onto the notch.
 
 ## Build
 

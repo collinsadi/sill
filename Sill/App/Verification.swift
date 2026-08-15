@@ -10,7 +10,15 @@ enum Verification {
     /// Renders the morph at evenly spaced progress values and writes a filmstrip to disk.
     /// This proves the shape of the transition. It does not prove how it composites over
     /// the wallpaper, which still needs a real screen capture.
-    static func writeFilmstrip(geometry: Silhouette.Geometry, to directory: String) -> [String] {
+    static func writeFilmstrip(geometry input: Silhouette.Geometry, to directory: String) -> [String] {
+        var geometry = input
+        if ProcessInfo.processInfo.environment["SILL_FLAT"] == "1" {
+            geometry.isNotched = false
+            geometry.hostWidth = HostMetrics.fallbackPillWidth
+            geometry.hostHeight = HostMetrics.fallbackPillHeight
+            geometry.hostTop = 30
+            geometry.hardwareRadius = 11
+        }
         let samples: [Double] = [0.0, Morph.bulgeEnd, Morph.neckEnd,
                                  (Morph.neckEnd + Morph.detachEnd) / 2,
                                  Morph.detachEnd, 0.72, 1.0]

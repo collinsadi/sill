@@ -107,7 +107,11 @@ final class PanelState {
             hostHeight: m?.hostHeight ?? HostMetrics.fallbackPillHeight,
             panelWidth: Self.panelWidth,
             panelHeight: peekMode ? Self.peekHeight : Self.maxPanelHeight,
-            hardwareRadius: m?.hardwareCornerRadius ?? 9
+            hardwareRadius: m?.hardwareCornerRadius ?? 9,
+            isNotched: m?.isNotched ?? true,
+            // On a flat display the pill hangs just below the menu bar rather than sitting
+            // in it, because there is no bezel to be part of.
+            hostTop: (m?.isNotched ?? true) ? 0 : ((m?.menuBarHeight ?? 24) + 6)
         )
     }
 }
