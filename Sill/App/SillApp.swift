@@ -30,6 +30,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         controller.start()
 
 
+        // Verification hooks are debug only. SILL_TEST_AI spawns a subprocess, which has
+        // no business being reachable from a signed release build.
+        #if DEBUG
         let env = ProcessInfo.processInfo.environment
         if let dir = env["SILL_FILMSTRIP"] {
             let files = Verification.writeFilmstrip(geometry: controller.state.geometry, to: dir)
@@ -75,6 +78,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 NSApp.terminate(nil)
             }
         }
+        #endif
     }
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool { true }

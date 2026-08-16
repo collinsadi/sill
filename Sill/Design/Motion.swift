@@ -45,9 +45,6 @@ enum Motion {
         reduceMotion ? .easeOut(duration: 0.16) : settleSoft.animation
     }
 
-    static func close(reduceMotion: Bool) -> Animation {
-        reduceMotion ? .easeOut(duration: 0.16) : retractSwallow.animation
-    }
 }
 
 extension Motion.Spring {

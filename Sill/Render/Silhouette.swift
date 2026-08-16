@@ -97,12 +97,3 @@ enum Silhouette {
     }
 }
 
-/// SwiftUI wrapper so the same geometry drives the drawing.
-struct SilhouetteShape: Shape {
-    var isExpanded: Bool
-    var geometry: Silhouette.Geometry
-
-    func path(in rect: CGRect) -> Path {
-        Silhouette.path(expanded: isExpanded, in: rect, g: geometry)
-    }
-}

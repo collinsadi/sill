@@ -64,6 +64,14 @@ These are enforced by review, not by the compiler:
 
 ## Tests
 
+```sh
+./tools/test.sh
+```
+
+Compiles the real source files together with the assertions, so a change in the app breaks
+the test rather than the test drifting into a copy. There is no test target, because a second
+target in a hand generated pbxproj is more fragile than it is worth.
+
 Write them where they earn their place: date parsing, the escalation schedule, store
 persistence and undo. Do not write tests for view layout.
 

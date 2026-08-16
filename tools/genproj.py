@@ -249,6 +249,7 @@ def main():
         "COMBINE_HIDPI_IMAGES = YES;",
         "CURRENT_PROJECT_VERSION = 1;",
         "ENABLE_HARDENED_RUNTIME = YES;",
+        "CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;",
         "CODE_SIGN_ENTITLEMENTS = %s/Sill.entitlements;" % APP,
         "GENERATE_INFOPLIST_FILE = NO;",
         "INFOPLIST_FILE = %s/Info.plist;" % APP,
